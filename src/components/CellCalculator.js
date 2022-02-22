@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './CellCalculator.css';
 
 const buildState = () =>  {
     return {
@@ -69,40 +70,54 @@ class CellCalculator extends Component {
     }
     render() {
         return (
-        <div className="container">
-            <form className="form-control" onSubmit={this.getSolution}>
-                <div className="mb-3">
-                    <label className="form-label" htmlFor="confluency">When do you need your cells?
-                        <select
-                        className="form-select" 
-                        name="confluency" 
-                        id="confluency"
-                        value={this.state.confluency}
-                        onChange={this.getConfluency}
-                        >
-                        <option value="1">Today</option>
-                        <option value="0.5">Tomorrow</option>
-                        <option value="0.25">In 2 days</option>
-                        <option value="0.125">In 3 days</option>
-                        <option value="0.0625">In 4 days</option>
-                    </select>
-                </label>
+        <div className="component-wrapper d-flex flex-column justify-content-center align-items-center w-50 mx-auto">
+            <div className="container">
+                <h1 className="brand">Cell Culture Calculator</h1>
+            </div>
+            <form className="form-control form-border" onSubmit={this.getSolution}>
+                <div className="m-3">
+                    <header className="my-5" id="screen">
+                        <p className='d-inline'>
+                        We will suspend our cells in <mark>{this.state.result_T75}</mark>mL for <mark>{this.state.T75Flasks}</mark>T75 flasks and <mark>{this.state.result_T175}</mark>mL for <mark>{this.state.T175Flasks}</mark> T175 flasks.
+                        </p>
+                    </header>
+                    <div className="row mx-auto">
+                        <div className="col-md-6 my-2">
+                        <label className="form-label" htmlFor="confluency">When do you need your cells?
+                            <select
+                            className="form-select" 
+                            name="confluency" 
+                            id="confluency"
+                            value={this.state.confluency}
+                            onChange={this.getConfluency}
+                            >
+                            <option value="1">Today</option>
+                            <option value="0.5">Tomorrow</option>
+                            <option value="0.25">In 2 days</option>
+                            <option value="0.125">In 3 days</option>
+                            <option value="0.0625">In 4 days</option>
+                        </select>
+                        </label>
+                        </div>
+                        <div className="col-md-6 my-2">
+                            <label className="form-label">
+                                How many plates do you need?
+                                <input
+                                placeholder="0"
+                                name="plates" 
+                                type="text"
+                                className="form-control" 
+                                value={this.state.plates}
+                                onChange={this.getNumPlates} 
+                                 />
+                            </label>
+                        </div>
+                    </div>
                 </div>
-                <div className="mb-3">
-                    <label className="form-label">
-                        How many plates do you need?
-                        <input
-                        placeholder="0"
-                        name="plates" 
-                        type="text"
-                        className="form-control" 
-                        value={this.state.plates}
-                        onChange={this.getNumPlates} 
-                         />
-                    </label>
-                </div>
-                <div className="mb-3">
-                    <label className="form-label" htmlFor="well_type">What type of plate would you like to use?
+                <div className="m-3">
+                    <div className="row mx-auto">
+                        <div className="col-md-6 my-2">
+                        <label className="form-label" htmlFor="well_type">What type of plate would you like to use?
                         <select
                         className="form-select" 
                         name="well_type" 
@@ -112,14 +127,14 @@ class CellCalculator extends Component {
                         >
                         <option value="6">6 well plates</option>
                         <option value="12">12 well plates</option>
-                    </select>
-                </label>
+                        </select>
+                        </label>
+                        </div>
+                    </div>
                 </div>
-                <div className="mb-3">
-                We will suspend our cells in <mark>{this.state.result_T75}</mark>mL for <mark>{this.state.T75Flasks}</mark>T75 flasks and <mark>{this.state.result_T175}</mark>mL for <mark>{this.state.T175Flasks}</mark> T175 flasks.
-                </div>
-                <button type="submit" value="Submit">Submit</button>
-                <button onClick={this.reset}>Reset</button>
+                
+                <button className="btn btn-primary my-2 mx-2" type="submit" value="Submit">Submit</button>
+                <button className="btn btn-success my-2 ms-2" onClick={this.reset}>Reset</button>
             </form>
         </div>
         )}
